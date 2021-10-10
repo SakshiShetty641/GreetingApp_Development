@@ -6,11 +6,17 @@ import com.bridgelabz.greetingapp.greetingapp.repository.GreetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GreetingService {
 
     @Autowired
-    GreetingRepository greetingRepository;
+    private GreetingRepository greetingRepository;
+
+    public List<Greeting> messages() {
+        return greetingRepository.findAll();
+    }
 
     public String getMessage() {
         return "Hello World!";

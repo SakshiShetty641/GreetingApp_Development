@@ -6,13 +6,19 @@ import com.bridgelabz.greetingapp.greetingapp.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class GreetingController {
 
     @Autowired
     private GreetingService greetingService;
 
-    
+    @GetMapping(value = "/messages")
+    public List<Greeting> messages() {
+        return greetingService.messages();
+    }
+
     @GetMapping("/message")
     public String getMessage() {
         return greetingService.getMessage();
