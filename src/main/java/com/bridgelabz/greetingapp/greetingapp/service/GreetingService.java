@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GreetingService {
@@ -29,4 +30,11 @@ public class GreetingService {
     }
 
 
+    public String findGreetingById(int id) {
+        Optional<Greeting> greeting = greetingRepository.findById(id);
+        if (greeting.isPresent()) {
+            return "The Greeting record with id is found: " + id;
+        }
+        return "Cannot find greeting record with given id: " + id;
+    }
 }

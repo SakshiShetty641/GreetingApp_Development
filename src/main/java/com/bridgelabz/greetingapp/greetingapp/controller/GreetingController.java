@@ -39,4 +39,10 @@ public class GreetingController {
         return greetingService.saveMessage(greetingDto);
     }
 
+    @GetMapping("/greetingMessage")
+    public String findGreetingById(@PathVariable int id){
+        return greetingService.findGreetingById(id);
+    }
+
+
 }
