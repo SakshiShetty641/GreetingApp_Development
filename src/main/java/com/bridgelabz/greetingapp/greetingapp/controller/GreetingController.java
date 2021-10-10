@@ -44,5 +44,10 @@ public class GreetingController {
         return greetingService.findGreetingById(id);
     }
 
+    @PutMapping("/greetingMessage/{id}")
+    public String editGreeting(@PathVariable int id, @RequestBody GreetingDTO greetingDto){
+        return greetingService.editGreeting(id,greetingDto);
+    }
+
 
 }

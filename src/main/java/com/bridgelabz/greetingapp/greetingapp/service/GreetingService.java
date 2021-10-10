@@ -37,4 +37,13 @@ public class GreetingService {
         }
         return "Cannot find greeting record with given id: " + id;
     }
+
+    public String editGreeting(int id, GreetingDTO greetingDTO) {
+        Optional<Greeting> greeting = greetingRepository.findById(id);
+        if (greeting.isPresent()) {
+            Greeting greeting1 = greeting.get();
+            greeting1.setMessage(greetingDTO.getMessage());
+        }
+        return "Cannot find greeting record with given id: " + id;
+    }
 }
