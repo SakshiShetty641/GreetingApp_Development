@@ -46,4 +46,14 @@ public class GreetingService {
         }
         return "Cannot find greeting record with given id: " + id;
     }
+
+    public String deleteGreeting(int id) {
+        Optional<Greeting> studentEntity = greetingRepository.findById(id);
+        if (studentEntity.isPresent()) {
+            greetingRepository.delete(studentEntity.get());
+            return "Record deleted successfully";
+        }
+        return "Record does not exists with this id : " + id;
+    }
 }
+
