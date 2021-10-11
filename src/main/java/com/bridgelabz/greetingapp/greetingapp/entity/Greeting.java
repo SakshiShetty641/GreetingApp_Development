@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Greeting {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String message;
 }

@@ -30,27 +30,29 @@ public class GreetingService {
     }
 
 
-    public String findGreetingById(int id) {
+    public Greeting findGreetingById(int id) {
         Optional<Greeting> greeting = greetingRepository.findById(id);
         if (greeting.isPresent()) {
-            return "The Greeting record with id is found: " + id;
+            return greeting.get();
         }
-        return "Cannot find greeting record with given id: " + id;
+        return null;
     }
 
-    public String editGreeting(int id, GreetingDTO greetingDTO) {
+    public Greeting editGreeting(int id, GreetingDTO greetingDTO) {
         Optional<Greeting> greeting = greetingRepository.findById(id);
         if (greeting.isPresent()) {
             Greeting greeting1 = greeting.get();
             greeting1.setMessage(greetingDTO.getMessage());
+            return greeting1;
+
         }
-        return "Cannot find greeting record with given id: " + id;
+        return null;
     }
 
     public String deleteGreeting(int id) {
-        Optional<Greeting> studentEntity = greetingRepository.findById(id);
-        if (studentEntity.isPresent()) {
-            greetingRepository.delete(studentEntity.get());
+        Optional<Greeting> greetingMessage = greetingRepository.findById(id);
+        if (greetingMessage.isPresent()) {
+            greetingRepository.delete(greetingMessage.get());
             return "Record deleted successfully";
         }
         return "Record does not exists with this id : " + id;

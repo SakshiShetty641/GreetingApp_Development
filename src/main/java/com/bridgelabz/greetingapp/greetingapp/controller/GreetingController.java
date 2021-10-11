@@ -34,25 +34,23 @@ public class GreetingController {
         return "Hello " + firstName + " " + lastName;
     }
 
-    @PostMapping("/greetingMessage")
+    @PostMapping("/savegreeting")
     public Greeting saveGreeting(@RequestBody GreetingDTO greetingDto){
         return greetingService.saveMessage(greetingDto);
     }
 
-    @GetMapping("/greetingMessage")
-    public String findGreetingById(@PathVariable int id){
+    @GetMapping("/findbyid/{id}")
+    public Greeting findGreetingById(@PathVariable int id){
         return greetingService.findGreetingById(id);
     }
 
-    @PutMapping("/greetingMessage/{id}")
-    public String editGreeting(@PathVariable int id, @RequestBody GreetingDTO greetingDto){
-        return greetingService.editGreeting(id,greetingDto);
+    @PutMapping(value = "/editgreeting/{id}")
+    public Greeting editGreeting(@PathVariable int id, @RequestBody GreetingDTO greetingDto){
+        return greetingService.editGreeting(id, greetingDto);
     }
 
     @DeleteMapping(value = "/deletegreeting")
     public String deleteGreeting(@RequestParam int id) {
         return greetingService.deleteGreeting(id);
     }
-
-
 }
